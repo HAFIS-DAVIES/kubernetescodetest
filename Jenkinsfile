@@ -1,5 +1,10 @@
 node {
-    def app
+    agent any
+    
+     environment {
+        registry = "earlyspring/test"
+        registryCredential = 'dockerhub'
+    }
 
     stage('Clone repository') {
       
@@ -7,10 +12,13 @@ node {
         checkout scm
     }
 
-    stage('Build image') {
-        sh 'echo "build start"'
-       app = docker.build("earlyspring/test")
-    }
+   stage('Building image') {
+            steps{
+              script {
+                dockerImage = docker.build registry + ":V$BUILD_NUMBER"
+              }
+            }
+        }
 
     stage('Test image') {
   
@@ -23,7 +31,7 @@ node {
     stage('Push image') {
         
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            app.push("${env.BUILD_NUMBER}")
+             dockerImage.push("V$BUILD_NUMBER")
         }
     }
     
