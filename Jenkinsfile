@@ -8,7 +8,7 @@ node {
     }
 
     stage('Build image') {
-        sh 'echo "build start"
+        sh 'echo "build start"'
        app = docker.build("earlyspring/test")
     }
 
