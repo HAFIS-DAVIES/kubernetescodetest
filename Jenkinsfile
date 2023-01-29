@@ -27,8 +27,8 @@ node {
         }
     }
     
-//     stage('Trigger earlyspring-cd-pipeline') {
-//                 echo "triggering updatemanifestjob"
-//                 build job: 'earlyspring-cd-pipeline', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
-//         }
+    stage('Trigger earlyspring-cd-pipeline') {
+                echo "triggering earlyspring-cd-pipeline"
+                build job: 'earlyspring-cd-pipeline', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+        }
 }
