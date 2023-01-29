@@ -8,8 +8,8 @@ node {
     }
 
     stage('Build image') {
-  
-       app = docker.build("raj80dockerid/test")
+        sh 'echo "build start"
+       app = docker.build("earlyspring/test")
     }
 
     stage('Test image') {
