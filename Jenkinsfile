@@ -27,8 +27,8 @@ node {
         }
     }
     
-    stage('Trigger ManifestUpdate') {
+    stage('Trigger earlyspring-cd-pipeline') {
                 echo "triggering updatemanifestjob"
-                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+                build job: 'earlyspring-cd-pipeline', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
         }
 }
